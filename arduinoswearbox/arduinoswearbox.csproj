@@ -162,7 +162,9 @@
     <Content Include="ForbiddenWords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="test.flac" />
+    <Content Include="test.flac">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SwearboxHelper\SwearboxHelper.csproj">
