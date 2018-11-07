@@ -34,7 +34,8 @@ namespace arduinoswearbox
                     arduinoComPortCombo.SelectedItem = ports[0];
                 }
             }
-            
+
+            gCloud.GetTranscript("test.flac", testInfo);
         }
 
         public void testInfo(string text)
