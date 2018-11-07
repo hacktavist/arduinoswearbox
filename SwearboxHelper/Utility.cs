@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace SwearboxHelper
 {
-    class Utility
+    public class Utility
     {
         public static readonly string ForbiddenWords = "ForbiddenWords.txt";
 

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO.Ports;
+using SwearboxHelper;
 
 namespace arduinoswearbox
 {
@@ -9,7 +10,7 @@ namespace arduinoswearbox
     public partial class Form1 : Form
     {
         // Speech Recognition setup
-
+        private readonly Cloud gCloud;
 
         // Arduino/COM setup
         SerialPort port;
@@ -20,7 +21,7 @@ namespace arduinoswearbox
             InitializeComponent();
 
             // Speech
-
+            gCloud = new Cloud();
 
             // Arduino/COM 
             getAvailableComPorts();
@@ -33,6 +34,13 @@ namespace arduinoswearbox
                     arduinoComPortCombo.SelectedItem = ports[0];
                 }
             }
+
+            gCloud.GetTranscript("test.flac", testInfo);
+        }
+
+        public void testInfo(string text)
+        {
+            speechRecognitionOutputTextbox.AppendText(text);
         }
 
         private void sendToArduino(String cmd)
