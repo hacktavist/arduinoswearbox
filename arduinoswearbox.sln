@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arduinoswearbox", "arduinoswearbox\arduinoswearbox.csproj", "{AE699C2B-7278-49F6-A72D-C03DBCEEF023}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwearboxHelper", "SwearboxHelper\SwearboxHelper.csproj", "{650A7BC2-3533-4BBD-B5B5-B1E5EA2EDF3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AE699C2B-7278-49F6-A72D-C03DBCEEF023}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE699C2B-7278-49F6-A72D-C03DBCEEF023}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE699C2B-7278-49F6-A72D-C03DBCEEF023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{650A7BC2-3533-4BBD-B5B5-B1E5EA2EDF3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{650A7BC2-3533-4BBD-B5B5-B1E5EA2EDF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{650A7BC2-3533-4BBD-B5B5-B1E5EA2EDF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{650A7BC2-3533-4BBD-B5B5-B1E5EA2EDF3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
