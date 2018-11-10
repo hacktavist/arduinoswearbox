@@ -35,6 +35,7 @@ namespace arduinoswearbox
             this.exitButton = new System.Windows.Forms.Button();
             this.serialPortConnection = new System.Windows.Forms.Button();
             this.speechRecognitionOutputTextbox = new System.Windows.Forms.TextBox();
+            this.refreshButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // arduinoComPortCombo
@@ -74,13 +75,14 @@ namespace arduinoswearbox
             // 
             // serialPortConnection
             // 
+            this.serialPortConnection.BackColor = System.Drawing.Color.Black;
             this.serialPortConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.serialPortConnection.Location = new System.Drawing.Point(311, 76);
             this.serialPortConnection.Name = "serialPortConnection";
             this.serialPortConnection.Size = new System.Drawing.Size(75, 23);
             this.serialPortConnection.TabIndex = 3;
             this.serialPortConnection.Text = "Connect";
-            this.serialPortConnection.UseVisualStyleBackColor = true;
+            this.serialPortConnection.UseVisualStyleBackColor = false;
             this.serialPortConnection.Click += new System.EventHandler(this.serialPortConnection_Click);
             // 
             // speechRecognitionOutputTextbox
@@ -97,6 +99,17 @@ namespace arduinoswearbox
             this.speechRecognitionOutputTextbox.Size = new System.Drawing.Size(462, 178);
             this.speechRecognitionOutputTextbox.TabIndex = 4;
             // 
+            // refreshButton
+            // 
+            this.refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshButton.Location = new System.Drawing.Point(189, 44);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshButton.TabIndex = 5;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,6 +117,7 @@ namespace arduinoswearbox
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(974, 527);
             this.ControlBox = false;
+            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.speechRecognitionOutputTextbox);
             this.Controls.Add(this.serialPortConnection);
             this.Controls.Add(this.exitButton);
@@ -124,8 +138,8 @@ namespace arduinoswearbox
         private System.Windows.Forms.Label arduinoComPortLabel;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button serialPortConnection;
-        private EventHandler connectSerial_Click;
         private System.Windows.Forms.TextBox speechRecognitionOutputTextbox;
+        private System.Windows.Forms.Button refreshButton;
     }
 }
 

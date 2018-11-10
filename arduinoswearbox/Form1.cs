@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO.Ports;
 using SwearboxHelper;
+using System.Threading.Tasks;
 
 namespace arduinoswearbox
 {
@@ -25,22 +26,19 @@ namespace arduinoswearbox
 
             // Arduino/COM 
             getAvailableComPorts();
-            foreach (string port in ports)
-            {
-                arduinoComPortCombo.Items.Add(port);
-                Console.WriteLine(port);
-                if (ports[0] != null)
-                {
-                    arduinoComPortCombo.SelectedItem = ports[0];
-                }
-            }
 
-            gCloud.GetTranscript("test.flac", testInfo);
+
         }
 
         public void testInfo(string text)
         {
-            speechRecognitionOutputTextbox.AppendText(text);
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker) delegate { testInfo(text); });
+                //Invoke(new Action<string>(testInfo));
+                return;
+            } else
+                speechRecognitionOutputTextbox.AppendText(text);   
         }
 
         private void sendToArduino(String cmd)
@@ -54,6 +52,15 @@ namespace arduinoswearbox
         void getAvailableComPorts()
         {
             ports = SerialPort.GetPortNames();
+            foreach (string port in ports)
+            {
+                arduinoComPortCombo.Items.Add(port);
+                Console.WriteLine(port);
+                if (ports[0] != null)
+                {
+                    arduinoComPortCombo.SelectedItem = ports[0];
+                }
+            }
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -71,7 +78,8 @@ namespace arduinoswearbox
             port.Write("#STAR\n");
             serialPortConnection.ForeColor = Color.Red;
             serialPortConnection.Text = "Disconnect";
-            gCloud.GetTranscript("test.flac", testInfo);
+            //gCloud.GetTranscript("test.flac", testInfo);
+            gCloud.StreamingMicRecognizeAsync(60, testInfo);
 
         }
 
@@ -94,6 +102,11 @@ namespace arduinoswearbox
             {
                 arduinoDisconnect();
             }
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            getAvailableComPorts();
         }
     }
 

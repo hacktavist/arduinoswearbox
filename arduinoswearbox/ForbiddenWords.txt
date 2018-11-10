@@ -1,9 +1,7 @@
-﻿-- Forbaded --
-fuck|#FRBD you said a forbidden word (fuck)|false
-shit|#FRBD you said a forbidden word (shit)|false
-cunt|#FRBD you said a forbidden word (cunt)|false
-bitch|#FRBD you said a forbidden word (bitch)|false
-ass|#FRBD you said a forbidden word (ass)|false
-motherfucker|#FRBD you said a forbidden word (motherfucker)|false
-hell|#FRBD you said a forbidden word (hell)|false
-damn|#FRBD you said a forbidden word (damn)|false
+﻿fuck
+shit
+bitch
+cunt
+damn
+hell
+ass
