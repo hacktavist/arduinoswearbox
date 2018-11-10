@@ -11,38 +11,14 @@ namespace SwearboxHelper
     public class Cloud
     {
         private SpeechClient client;
+        public int forbidden = 0;
 
         public Cloud()
         {
             Task.Run(async () => client = await SpeechClient.CreateAsync());
         }
 
-        public async void GetTranscript(string uri, Action<string> callback)
-        {
-            if (client == null) return;
-            var context = new SpeechContext() { Phrases = { File.ReadLines(Utility.ForbiddenWords) } };
-            var speechOperation = await client.LongRunningRecognizeAsync(new RecognitionConfig()
-            {
-                Encoding = RecognitionConfig.Types.AudioEncoding.Flac,
-
-                LanguageCode = "en-US",
-                EnableWordTimeOffsets = true,
-                SpeechContexts = { context }
-            }, RecognitionAudio.FromFile(uri));
-
-            speechOperation = await speechOperation.PollUntilCompletedAsync();
-            var response = speechOperation.Result;
-            string builder = "";
-            foreach (var result in response.Results)
-            {
-                foreach (var alternative in result.Alternatives)
-                {
-                    builder += alternative.Transcript;
-                }
-                builder += Environment.NewLine;
-            }
-            callback(builder);
-        }
+        
 
         public async void  StreamingMicRecognizeAsync(int seconds, Action<string> callback)
         {
@@ -51,7 +27,6 @@ namespace SwearboxHelper
                 Console.WriteLine("No microphone!");
                 return;
             }
-
             var context = new SpeechContext() { Phrases = { File.ReadLines(Utility.ForbiddenWords) } };
             var speech = SpeechClient.Create();
             var streamingCall = speech.StreamingRecognize();
@@ -69,7 +44,7 @@ namespace SwearboxHelper
                             LanguageCode = "en",
                             SpeechContexts = { context },
                         },
-                        InterimResults = true,
+                        SingleUtterance = false
                     }
                 });
             // Print responses as they arrive.
@@ -84,10 +59,14 @@ namespace SwearboxHelper
                     {
                         foreach (var alternative in result.Alternatives)
                         {
+                            forbidden = Utility.CheckForbiddenWords(alternative.Transcript);
+                            
+                              
                             build += alternative.Transcript;
+                            build += Environment.NewLine;
                             Console.WriteLine(alternative.Transcript);
+                            
                         }
-                        build += Environment.NewLine;
                     }
                     callback(build);
                 }

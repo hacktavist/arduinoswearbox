@@ -36,6 +36,9 @@ namespace arduinoswearbox
             this.serialPortConnection = new System.Windows.Forms.Button();
             this.speechRecognitionOutputTextbox = new System.Windows.Forms.TextBox();
             this.refreshButton = new System.Windows.Forms.Button();
+            this.secondsToListenCombo = new System.Windows.Forms.ComboBox();
+            this.secondsToListenLabel = new System.Windows.Forms.Label();
+            this.listenButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // arduinoComPortCombo
@@ -110,6 +113,49 @@ namespace arduinoswearbox
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
+            // secondsToListenCombo
+            // 
+            this.secondsToListenCombo.BackColor = System.Drawing.Color.Black;
+            this.secondsToListenCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.secondsToListenCombo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.secondsToListenCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.secondsToListenCombo.ForeColor = System.Drawing.Color.Lime;
+            this.secondsToListenCombo.FormattingEnabled = true;
+            this.secondsToListenCombo.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "15",
+            "30",
+            "60"});
+            this.secondsToListenCombo.Location = new System.Drawing.Point(168, 136);
+            this.secondsToListenCombo.Name = "secondsToListenCombo";
+            this.secondsToListenCombo.Size = new System.Drawing.Size(121, 28);
+            this.secondsToListenCombo.TabIndex = 6;
+            // 
+            // secondsToListenLabel
+            // 
+            this.secondsToListenLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.secondsToListenLabel.AutoSize = true;
+            this.secondsToListenLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.secondsToListenLabel.Location = new System.Drawing.Point(12, 129);
+            this.secondsToListenLabel.MaximumSize = new System.Drawing.Size(150, 100);
+            this.secondsToListenLabel.Name = "secondsToListenLabel";
+            this.secondsToListenLabel.Size = new System.Drawing.Size(141, 40);
+            this.secondsToListenLabel.TabIndex = 7;
+            this.secondsToListenLabel.Text = "# of Seconds to Listen";
+            this.secondsToListenLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // listenButton
+            // 
+            this.listenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.listenButton.Location = new System.Drawing.Point(311, 139);
+            this.listenButton.Name = "listenButton";
+            this.listenButton.Size = new System.Drawing.Size(75, 23);
+            this.listenButton.TabIndex = 8;
+            this.listenButton.Text = "Listen";
+            this.listenButton.UseVisualStyleBackColor = true;
+            this.listenButton.Click += new System.EventHandler(this.listenButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -117,6 +163,9 @@ namespace arduinoswearbox
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(974, 527);
             this.ControlBox = false;
+            this.Controls.Add(this.listenButton);
+            this.Controls.Add(this.secondsToListenLabel);
+            this.Controls.Add(this.secondsToListenCombo);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.speechRecognitionOutputTextbox);
             this.Controls.Add(this.serialPortConnection);
@@ -140,6 +189,9 @@ namespace arduinoswearbox
         private System.Windows.Forms.Button serialPortConnection;
         private System.Windows.Forms.TextBox speechRecognitionOutputTextbox;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.ComboBox secondsToListenCombo;
+        private System.Windows.Forms.Label secondsToListenLabel;
+        private System.Windows.Forms.Button listenButton;
     }
 }
 

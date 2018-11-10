@@ -3,6 +3,8 @@
 String inputString = "";         // a string to hold incoming data
 boolean stringComplete = false;  // whether the string is complete
 String commandString = "";
+int numberOfForbiddenWords  = 0;
+String forbiddenWordsCommand = "";
 
 
 boolean isConnected = false;
@@ -29,11 +31,9 @@ if(stringComplete)
   if(commandString.equals("STOP")){
     digitalWrite(LED_BUILTIN, LOW);   
   }
-  else if(commandString.equals("FRBD")){
-    digitalWrite(LED_BUILTIN, HIGH);
-  }
-  else if(commandString.equals("FINE")){
-    digitalWrite(LED_BUILTIN, LOW);
+  else if(commandString.equals("FRBD"+String(numberOfForbiddenWords))){
+    Serial.println("We have the forbidden command string");
+    pulseLed(LED_BUILTIN, numberOfForbiddenWords);
   }
   
   inputString = "";
@@ -49,12 +49,25 @@ void getCommand()
   if(inputString.length()>0)
   {
      commandString = inputString.substring(1,5);
+     Serial.println(commandString.indexOf("FRBD"));
+     if(commandString.indexOf("FRBD") >= 0){
+      forbiddenWordsCommand = commandString;
+      numberOfForbiddenWords = inputString.substring(5,6).toInt();
+      commandString = forbiddenWordsCommand+String(numberOfForbiddenWords);
+      Serial.println("# of words: "+String(numberOfForbiddenWords));
+      Serial.println("cmd string: "+forbiddenWordsCommand);
+     }
   }
 }
 
-void turnLedOn(int pin)
+void pulseLed(int pin, int pulses)
 {
-  digitalWrite(pin,HIGH);
+  for(int i=0; i < pulses; i++){
+    digitalWrite(pin,LOW);
+    delay(1000);
+    digitalWrite(pin,HIGH);
+    delay(1000);
+  }
 }
 
 void turnLedOff(int pin)
@@ -75,4 +88,3 @@ void serialEvent() {
     }
   }
 }
-

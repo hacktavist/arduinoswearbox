@@ -17,6 +17,7 @@ namespace arduinoswearbox
         SerialPort port;
         String[] ports;
         bool isConnected = false;
+        int seconds = 0;
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace arduinoswearbox
 
             // Arduino/COM 
             getAvailableComPorts();
-
+            secondsToListenCombo.SelectedIndex = secondsToListenCombo.Items.IndexOf("10");
 
         }
 
@@ -34,11 +35,15 @@ namespace arduinoswearbox
         {
             if (InvokeRequired)
             {
-                Invoke((MethodInvoker) delegate { testInfo(text); });
-                //Invoke(new Action<string>(testInfo));
+                Invoke((MethodInvoker)delegate { testInfo(text); });
                 return;
-            } else
-                speechRecognitionOutputTextbox.AppendText(text);   
+            }
+            else
+            {
+                speechRecognitionOutputTextbox.AppendText(text);
+                speechRecognitionOutputTextbox.AppendText("#FBD"+gCloud.forbidden.ToString()+"\n");
+                sendToArduino("#FRBD" + gCloud.forbidden.ToString());
+            }
         }
 
         private void sendToArduino(String cmd)
@@ -51,6 +56,7 @@ namespace arduinoswearbox
 
         void getAvailableComPorts()
         {
+            arduinoComPortCombo.Items.Clear();
             ports = SerialPort.GetPortNames();
             foreach (string port in ports)
             {
@@ -75,18 +81,16 @@ namespace arduinoswearbox
             string selectedPort = arduinoComPortCombo.GetItemText(arduinoComPortCombo.SelectedItem);
             port = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
             port.Open();
-            port.Write("#STAR\n");
+            sendToArduino("#STAR");
             serialPortConnection.ForeColor = Color.Red;
             serialPortConnection.Text = "Disconnect";
-            //gCloud.GetTranscript("test.flac", testInfo);
-            gCloud.StreamingMicRecognizeAsync(60, testInfo);
 
         }
 
         void arduinoDisconnect()
         {
+            sendToArduino("#STOP");
             isConnected = false;
-            port.Write("#STOP\n");
             port.Close();
             serialPortConnection.ForeColor = Color.Lime;
             serialPortConnection.Text = "Connect";
@@ -107,6 +111,17 @@ namespace arduinoswearbox
         private void refreshButton_Click(object sender, EventArgs e)
         {
             getAvailableComPorts();
+        }
+
+        private void listenButton_Click(object sender, EventArgs e)
+        {
+            seconds = Convert.ToInt32(secondsToListenCombo.SelectedItem.ToString());
+            if (isConnected)
+            {
+                speechRecognitionOutputTextbox.Clear();
+                speechRecognitionOutputTextbox.AppendText("Listening\n");
+                gCloud.StreamingMicRecognizeAsync(seconds, testInfo);
+            }
         }
     }
 
