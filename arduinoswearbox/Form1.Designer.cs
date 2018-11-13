@@ -71,7 +71,7 @@ namespace arduinoswearbox
             this.exitButton.Location = new System.Drawing.Point(883, 484);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(75, 23);
-            this.exitButton.TabIndex = 2;
+            this.exitButton.TabIndex = 4;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
@@ -83,7 +83,7 @@ namespace arduinoswearbox
             this.serialPortConnection.Location = new System.Drawing.Point(311, 76);
             this.serialPortConnection.Name = "serialPortConnection";
             this.serialPortConnection.Size = new System.Drawing.Size(75, 23);
-            this.serialPortConnection.TabIndex = 3;
+            this.serialPortConnection.TabIndex = 1;
             this.serialPortConnection.Text = "Connect";
             this.serialPortConnection.UseVisualStyleBackColor = false;
             this.serialPortConnection.Click += new System.EventHandler(this.serialPortConnection_Click);
@@ -100,7 +100,8 @@ namespace arduinoswearbox
             this.speechRecognitionOutputTextbox.ReadOnly = true;
             this.speechRecognitionOutputTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.speechRecognitionOutputTextbox.Size = new System.Drawing.Size(462, 178);
-            this.speechRecognitionOutputTextbox.TabIndex = 4;
+            this.speechRecognitionOutputTextbox.TabIndex = 6;
+            this.speechRecognitionOutputTextbox.TabStop = false;
             // 
             // refreshButton
             // 
@@ -130,7 +131,7 @@ namespace arduinoswearbox
             this.secondsToListenCombo.Location = new System.Drawing.Point(168, 136);
             this.secondsToListenCombo.Name = "secondsToListenCombo";
             this.secondsToListenCombo.Size = new System.Drawing.Size(121, 28);
-            this.secondsToListenCombo.TabIndex = 6;
+            this.secondsToListenCombo.TabIndex = 2;
             // 
             // secondsToListenLabel
             // 
@@ -140,7 +141,7 @@ namespace arduinoswearbox
             this.secondsToListenLabel.Location = new System.Drawing.Point(12, 129);
             this.secondsToListenLabel.MaximumSize = new System.Drawing.Size(150, 100);
             this.secondsToListenLabel.Name = "secondsToListenLabel";
-            this.secondsToListenLabel.Size = new System.Drawing.Size(141, 40);
+            this.secondsToListenLabel.Size = new System.Drawing.Size(136, 40);
             this.secondsToListenLabel.TabIndex = 7;
             this.secondsToListenLabel.Text = "# of Seconds to Listen";
             this.secondsToListenLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -151,7 +152,7 @@ namespace arduinoswearbox
             this.listenButton.Location = new System.Drawing.Point(311, 139);
             this.listenButton.Name = "listenButton";
             this.listenButton.Size = new System.Drawing.Size(75, 23);
-            this.listenButton.TabIndex = 8;
+            this.listenButton.TabIndex = 3;
             this.listenButton.Text = "Listen";
             this.listenButton.UseVisualStyleBackColor = true;
             this.listenButton.Click += new System.EventHandler(this.listenButton_Click);
