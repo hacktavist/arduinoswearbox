@@ -1,4 +1,4 @@
-
+#define shock 7
 
 String inputString = "";         // a string to hold incoming data
 boolean stringComplete = false;  // whether the string is complete
@@ -14,7 +14,7 @@ boolean isConnected = false;
 void setup() {
   
   Serial.begin(9600);
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(shock, OUTPUT);
 
 }
 
@@ -33,7 +33,7 @@ if(stringComplete)
   }
   else if(commandString.equals("FRBD"+String(numberOfForbiddenWords))){
     Serial.println("We have the forbidden command string");
-    pulseLed(LED_BUILTIN, numberOfForbiddenWords);
+    pulseLed(shock, numberOfForbiddenWords);
   }
   
   inputString = "";
