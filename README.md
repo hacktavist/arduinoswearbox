@@ -8,3 +8,5 @@
   * ##### This is going to be the resting place for the google cloud speech to text build; the original build is under the microsoft_sapi_build branch. While that branch works, there are too many false positives for swearing which pretty much ruins the project
 
 [![alt text](https://j.gifs.com/gLA9WD.gif)](https://youtu.be/sI_3dkyu0hY "watch on youtube")
+
+[![Demo Doccou alpha](http://share.gifyoutube.com/KzB6Gb.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
