@@ -28,8 +28,7 @@ namespace SwearboxHelper
                 return;
             }
             var context = new SpeechContext() { Phrases = { File.ReadLines(Utility.ForbiddenWords) } };
-            var speech = SpeechClient.Create();
-            var streamingCall = speech.StreamingRecognize();
+            var streamingCall = client.StreamingRecognize();
             // Write the initial request with the config.
             await streamingCall.WriteAsync(
                 new StreamingRecognizeRequest()
@@ -44,7 +43,6 @@ namespace SwearboxHelper
                             LanguageCode = "en",
                             SpeechContexts = { context },
                         },
-                        SingleUtterance = false
                     }
                 });
             // Print responses as they arrive.
