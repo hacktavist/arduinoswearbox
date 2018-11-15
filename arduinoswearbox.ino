@@ -1,5 +1,6 @@
-
-
+#include <Apex5400BillAcceptor.h>
+//bill acceptor library courtesy of jesse campbell; requires receive only software serial library
+//https://github.com/hackwin/ArduinoPyramidApex5000BillAcceptor
 String inputString = "";         // a string to hold incoming data
 boolean stringComplete = false;  // whether the string is complete
 String commandString = "";
@@ -9,17 +10,30 @@ String forbiddenWordsCommand = "";
 
 boolean isConnected = false;
 
+#define PIN_ENABLE 7 //Purple wire, to enable set low, to disable set high
+#define PIN_INTERRUPT_LINE 8 //Orange wire on Apex, Request to send data to host
+#define PIN_SEND_LINE 9 //White/Blue wire, Host Ready Signal
+#define PIN_TTL_RX 10 //Green wire, Transmit Data Line from acceptor
+
+Apex5400BillAcceptor *billAcceptor;
+int code;
 
 
 void setup() {
   
   Serial.begin(9600);
+  
   pinMode(LED_BUILTIN, OUTPUT);
-
+  billAcceptor = new Apex5400BillAcceptor(PIN_ENABLE, PIN_INTERRUPT_LINE, PIN_SEND_LINE, PIN_TTL_RX);    
 }
 
 void loop() {
-
+if(code = billAcceptor->checkForBill()){
+    Serial.print("Code: 0x");
+    Serial.print(code, HEX);
+    Serial.print(", Description: ");
+    Serial.println(billAcceptor->getDescription(code));
+  }
 if(stringComplete)
 {
   stringComplete = false;
@@ -33,7 +47,7 @@ if(stringComplete)
   }
   else if(commandString.equals("FRBD"+String(numberOfForbiddenWords))){
     Serial.println("We have the forbidden command string");
-    pulseLed(LED_BUILTIN, numberOfForbiddenWords);
+    //do some stuff with the bill acceptor
   }
   
   inputString = "";
