@@ -1,6 +1,9 @@
 #include <Apex5400BillAcceptor.h>
-//bill acceptor library courtesy of jesse campbell; requires receive only software serial library
-//https://github.com/hackwin/ArduinoPyramidApex5000BillAcceptor
+//Bill acceptor library courtesy of:
+//Jesse Campbell, http://www.jbcse.com/
+//Bill acceptor library: https://github.com/hackwin/ArduinoPyramidApex5000BillAcceptor
+//Requires library: http://gammon.com.au/Arduino/ReceiveOnlySoftwareSerial.zip
+
 String inputString = "";         // a string to hold incoming data
 boolean stringComplete = false;  // whether the string is complete
 String commandString = "";
