@@ -58,7 +58,9 @@ void loop() {
         needsCredits = true;
         billAcceptor->enable();
       } else {
+        Serial.println("Subtracting cum");
         credits -= cumulativeWords;
+        cumulativeWords -= numberOfForbiddenWords;
       }
     }
   
@@ -81,9 +83,10 @@ void checkMoney(){
         Serial.println(billAcceptor->getDescription(code));
         credits = billAcceptor->getDollarValue(code);
         Serial.println("credits: " + String(credits));
-              if(credits >= numberOfForbiddenWords){
-                credits -= numberOfForbiddenWords;
+              if(credits >= cumulativeWords){
+                credits -= cumulativeWords;
                 billAcceptor->disable();
+                cumulativeWords = 0;
                 needsCredits = false;
               }
       }
