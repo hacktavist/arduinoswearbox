@@ -20,17 +20,18 @@ int credits = 0;
 #define PIN_SEND_LINE 9 //White/Blue wire, Host Ready Signal
 #define PIN_TTL_RX 10 //Green wire, Transmit Data Line from acceptor
 #define DIGITAL_INTERRUPT 2
+#define PULSE_PIN 12
 Apex5400BillAcceptor *billAcceptor;
 int code;
 
 
 void setup() {
-  
+
   Serial.begin(9600);
-  
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(PULSE_PIN, OUTPUT);
   pinMode(DIGITAL_INTERRUPT, INPUT);
-  billAcceptor = new Apex5400BillAcceptor(PIN_ENABLE, PIN_INTERRUPT_LINE, PIN_SEND_LINE, PIN_TTL_RX);    
+  billAcceptor = new Apex5400BillAcceptor(PIN_ENABLE, PIN_INTERRUPT_LINE, PIN_SEND_LINE, PIN_TTL_RX);
   billAcceptor->disable();
 }
 
@@ -38,15 +39,15 @@ void loop() {
 
   if(stringComplete)
   {
-    
+
     stringComplete = false;
     getCommand();
-    
+
     if(commandString.equals("STAR")){
       digitalWrite(LED_BUILTIN, HIGH);
     }
     if(commandString.equals("STOP")){
-      digitalWrite(LED_BUILTIN, LOW);   
+      digitalWrite(LED_BUILTIN, LOW);
     }
     else if(commandString.equals("FRBD"+String(numberOfForbiddenWords))){
       Serial.println("We have the forbidden command string");
@@ -63,8 +64,8 @@ void loop() {
         cumulativeWords -= numberOfForbiddenWords;
       }
     }
-  
-    
+
+
     inputString = "";
   }
   if(needsCredits){
@@ -91,7 +92,7 @@ void checkMoney(){
               }
       }
   }
-  pulse(LED_BUILTIN,1);
+  pulse(PULSE_PIN,1);
 }
 
 
