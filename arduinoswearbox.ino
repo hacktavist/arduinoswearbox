@@ -80,7 +80,7 @@ void checkMoney(){
         Serial.print(code, HEX);
         Serial.print(", Description: ");
         Serial.println(billAcceptor->getDescription(code));
-        credits = billAcceptor->getDollarValue(code);
+        credits += billAcceptor->getDollarValue(code);
         Serial.println("credits: " + String(credits));
               if(credits >= cumulativeWords){
                 credits -= cumulativeWords;
