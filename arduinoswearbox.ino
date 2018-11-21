@@ -19,7 +19,6 @@ int credits = 0;
 #define PIN_INTERRUPT_LINE 8 //Orange wire on Apex, Request to send data to host
 #define PIN_SEND_LINE 9 //White/Blue wire, Host Ready Signal
 #define PIN_TTL_RX 10 //Green wire, Transmit Data Line from acceptor
-#define DIGITAL_INTERRUPT 2
 #define PULSE_PIN 12
 Apex5400BillAcceptor *billAcceptor;
 int code;
@@ -30,7 +29,6 @@ void setup() {
   Serial.begin(9600);
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(PULSE_PIN, OUTPUT);
-  pinMode(DIGITAL_INTERRUPT, INPUT);
   billAcceptor = new Apex5400BillAcceptor(PIN_ENABLE, PIN_INTERRUPT_LINE, PIN_SEND_LINE, PIN_TTL_RX);
   billAcceptor->disable();
 }
