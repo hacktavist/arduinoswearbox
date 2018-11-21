@@ -1,5 +1,4 @@
 # Arduino Swear Box
------------------------------------
 #### A glorified hi-tech swear jar
 -----------------------------------
 #### Keeps track of how many times you use profanity in a sentence. Every profane word is equal to a dollar. The ForbiddenWords.txt is a text file of profane words, you can add single words to it or you can add phrases; must be on separate lines.
