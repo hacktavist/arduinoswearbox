@@ -91,6 +91,7 @@ void checkMoney(){
       }
   }
   pulse(PULSE_PIN,1);
+
 }
 
 
@@ -116,6 +117,8 @@ void pulse(int pin, int pulses)
     digitalWrite(pin,LOW);
     delay(1000);
     digitalWrite(pin,HIGH);
+    delay(1000);
+    digitalWrite(pin, LOW);
     delay(1000);
   }
 }
