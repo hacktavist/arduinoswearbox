@@ -23,6 +23,12 @@ int credits = 0;
 Apex5400BillAcceptor *billAcceptor;
 int code;
 
+int state = LOW;
+
+unsigned long previousMillis = 0;
+
+const long interval = 1000;
+
 
 void setup() {
 
@@ -90,6 +96,7 @@ void checkMoney(){
               }
       }
   }
+
   pulse(PULSE_PIN,1);
 
 }
@@ -113,14 +120,19 @@ void getCommand()
 
 void pulse(int pin, int pulses)
 {
-  for(int i=0; i < pulses; i++){
-    digitalWrite(pin,LOW);
-    delay(1000);
-    digitalWrite(pin,HIGH);
-    delay(1000);
-    digitalWrite(pin, LOW);
-    delay(1000);
-  }
+  unsigned long currentMillis = millis();
+    if(currentMillis - previousMillis >= interval){
+      previousMillis = currentMillis;
+      for(int i=0; i < pulses; i++){
+        if(state == LOW){
+          state = HIGH;
+        } else{
+          state = LOW;
+        }
+        digitalWrite(pin, state);
+      }
+    }
+  
 }
 
 void turnLedOff(int pin)
